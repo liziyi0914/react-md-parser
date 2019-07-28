@@ -2,22 +2,46 @@ import expect from 'expect'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'
 
-import Component from 'src/'
+import Markdown from 'src/'
 
-describe('Component', () => {
-  let node
+describe('Markdown', () => {
+	let node
 
-  beforeEach(() => {
-    node = document.createElement('div')
-  })
+	beforeEach(() => {
+		node = document.createElement('div')
+	})
 
-  afterEach(() => {
-    unmountComponentAtNode(node)
-  })
+	afterEach(() => {
+		unmountComponentAtNode(node)
+	})
 
-  it('displays a welcome message', () => {
-    render(<Component/>, node, () => {
-      expect(node.innerHTML).toContain('Welcome to React components')
-    })
-  })
+	it('# h1', () => {
+		render(<Markdown src='# h1'/>, node, () => {
+			expect(node.innerHTML).toContain('<h1>h1</h1>')
+		})
+	})
+
+	it('# h1 #', () => {
+		render(<Markdown src='# h1 #'/>, node, () => {
+			expect(node.innerHTML).toContain('<h1>h1</h1>')
+		})
+	})
+
+	it('## h2', () => {
+		render(<Markdown src='## h2'/>, node, () => {
+			expect(node.innerHTML).toContain('<h2>h2</h2>')
+		})
+	})
+
+	it('## h2 ##', () => {
+		render(<Markdown src='## h2 ##'/>, node, () => {
+			expect(node.innerHTML).toContain('<h2>h2</h2>')
+		})
+	})
+
+	it('[text](link)', () => {
+		render(<Markdown src='[text](link)'/>, node, () => {
+			expect(node.innerHTML).toContain('<a href="link" title="">text</a>')
+		})
+	})
 })

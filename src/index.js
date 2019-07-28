@@ -1,9 +1,11 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import MarkdownParser from './MarkdownParser';
 
-export default class extends Component {
-  render() {
-    return <div>
-      <h2>Welcome to React components</h2>
-    </div>
-  }
+class Markdown extends Component {
+	render() {
+		var mdp = new MarkdownParser();
+		return mdp.parse(this.props.src);
+	}
 }
+
+export default Markdown;
