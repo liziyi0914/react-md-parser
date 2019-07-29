@@ -44,4 +44,11 @@ describe('Markdown', () => {
 			expect(node.innerHTML).toContain('<a href="link" title="">text</a>')
 		})
 	})
+
+	it('![text](link)', () => {
+		render(<Markdown src='![text](link)'/>, node, () => {
+			expect(node.innerHTML).toContain('<img src="link" alt="text">')
+		})
+	})
+
 })

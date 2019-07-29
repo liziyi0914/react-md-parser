@@ -148,7 +148,7 @@ class HBlock extends BlockParser {
 	}
 
 	render() {
-		return <H level={this.level}>{this.renderInline()}</H>;
+		return <MarkdownConfig.Renders.h level={this.level}>{this.renderInline()}</MarkdownConfig.Renders.h>;
 	}
 
 }
@@ -173,7 +173,7 @@ class PBlock extends BlockParser {
 	}
 
 	render() {
-		return <P>{this.renderInline()}</P>;
+		return <MarkdownConfig.Renders.p>{this.renderInline()}</MarkdownConfig.Renders.p>;
 	}
 }
 
@@ -198,7 +198,7 @@ class UListBlock extends BlockParser {
 	}
 
 	render() {
-		return <UList list={this.renderInline()}/>
+		return <MarkdownConfig.Renders.ul list={this.renderInline()}/>
 	}
 }
 
@@ -223,7 +223,7 @@ class OListBlock extends BlockParser {
 	}
 
 	render() {
-		return <OList list={this.renderInline()}/>
+		return <MarkdownConfig.Renders.ol list={this.renderInline()}/>
 	}
 }
 
@@ -248,7 +248,7 @@ class QuoteBlock extends BlockParser {
 	}
 
 	render() {
-		return <Quote>{new MarkdownParser().parse(this.text)}</Quote>
+		return <MarkdownConfig.Renders.quote>{new MarkdownParser().parse(this.text)}</MarkdownConfig.Renders.quote>
 	}
 }
 
@@ -318,7 +318,7 @@ class LinkInline extends InlineParser {
 			this.link = md.refs[this.ref].link;
 			this.title = md.refs[this.ref].title;
 		}
-		return <Link to={this.link} title={this.title}>{InlineParser.renderChildren(this.text,md,comps)}</Link>;
+		return <MarkdownConfig.Renders.link to={this.link} title={this.title}>{InlineParser.renderChildren(this.text,md,comps)}</MarkdownConfig.Renders.link>;
 	}
 
 }
@@ -355,7 +355,7 @@ class ImageInline extends InlineParser {
 			this.src = md.refs[this.ref].link;
 			this.alt = md.refs[this.ref].title;
 		}
-		return <Image src={this.src} alt={this.alt}/>;
+		return <MarkdownConfig.Renders.image src={this.src} alt={this.alt}/>;
 	}
 
 }
@@ -381,7 +381,7 @@ class EmInline extends InlineParser {
 	}
 
 	render(md,comps) {
-		return <Em>{InlineParser.renderChildren(this.text,md,comps)}</Em>;
+		return <MarkdownConfig.Renders.em>{InlineParser.renderChildren(this.text,md,comps)}</MarkdownConfig.Renders.em>;
 	}
 
 }
@@ -429,7 +429,7 @@ class CodeInline extends InlineParser {
 	}
 
 	render(md,comps) {
-		return <Code>{InlineParser.renderChildren(this.text,md,comps)}</Code>;
+		return <MarkdownConfig.Renders.code>{InlineParser.renderChildren(this.text,md,comps)}</MarkdownConfig.Renders.code>;
 	}
 
 }
